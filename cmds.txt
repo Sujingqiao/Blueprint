@@ -1,0 +1,15 @@
+ grep -rE "^(theorem|lemma)\s+[a-zA-Z_]" --include="*.lean" . \
+  | grep -oE "(theorem|lemma)\s+([a-zA-Z0-9_.]+)" \
+  | awk '{print $2}' \
+  | sort | uniq
+
+
+
+   rg -g "*.lean" -o "^(theorem|lemma|def|instance|class|inductive|structure)\s+([a-zA-Z0-9_.]+)" --replace '$2' | sort | uniq
+
+
+
+   grep -rE "^(theorem|lemma|def|instance|class|inductive|structure|axiom|constant)\s+[a-zA-Z_]" --include="*.lean" . \
+  | grep -oE "^(theorem|lemma|def|instance|class|inductive|structure|axiom|constant)\s+([a-zA-Z0-9_.]+)" \
+  | awk '{print $2}' \
+  | sort | uniq
